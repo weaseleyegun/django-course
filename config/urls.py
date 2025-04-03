@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http.response import HttpResponse, JsonResponse
+from .views import hello_world_jsoin, hello_world
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("",hello_world),
+    path("json/", hello_world_jsoin)
 ]
