@@ -15,12 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.http.response import HttpResponse, JsonResponse
-from .views import hello_world_jsoin, hello_world
+from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",hello_world),
-    path("json/", hello_world_jsoin)
+    path("",views.hello_world),
+    path("todo/", include("todo.urls")),
+    path("random/template", views.RandomNumberTemplateView.as_view()), #Class는 .as_view를 추가해줘야함.
+    path("random/view", views.RandomNumverView.as_view()) #Class는 .as_view를 추가해줘야함.
 ]
