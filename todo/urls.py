@@ -3,6 +3,9 @@ from . import views
 from .apis import *
 
 urlpatterns = [
+    path("generics/create/", TodoGenericsCreateAPI.as_view()),
+    path("generics/list/", TodoGenericsListAPI.as_view()),
+    path("generics/listcreate/", TodoGenericsListCreateAPI.as_view()),
     path("create/", TodoCreateAPI.as_view()),
     path("list_api/", TodoListAPI.as_view()),
     path("retrieve/<int:pk>/", TodoRetripeveAPI.as_view()),
