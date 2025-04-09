@@ -1,8 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .apis import *
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter
+router.register("", TodoViewSet)
 
 urlpatterns = [
+    path("viewsets/", include(router.urls)),
     path("generics/create/", TodoGenericsCreateAPI.as_view()),
     path("generics/list/", TodoGenericsListAPI.as_view()),
     path("generics/<int:pk>/", TodoGenericsRetrieveUpdateDestoryAPI.as_view()),
