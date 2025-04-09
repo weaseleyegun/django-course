@@ -69,10 +69,32 @@ class TodoDeleteAPI(APIView):
 class TodoGenericsCreateAPI(generics.CreateAPIView):
     serializer_class = TodoSerializer
 
+
 class TodoGenericsListAPI(generics.ListAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
+
 class TodoGenericsListCreateAPI(generics.ListCreateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class TodoGenericsRetrieveAPI(generics.RetrieveAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class TodoGenericsUpdateAPI(generics.UpdateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class TodoGenericsDeleteAPI(generics.DestroyAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class TodoGenericsRetrieveUpdateDestoryAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer

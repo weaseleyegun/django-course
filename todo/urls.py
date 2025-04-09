@@ -5,7 +5,10 @@ from .apis import *
 urlpatterns = [
     path("generics/create/", TodoGenericsCreateAPI.as_view()),
     path("generics/list/", TodoGenericsListAPI.as_view()),
-    path("generics/listcreate/", TodoGenericsListCreateAPI.as_view()),
+    path("generics/<int:pk>/", TodoGenericsRetrieveUpdateDestoryAPI.as_view()),
+    path("generics/retrieve/<int:pk>/", TodoGenericsRetrieveAPI.as_view()),
+    path("generics/update/<int:pk>/", TodoGenericsUpdateAPI.as_view()),
+    path("generics/delete/<int:pk>/", TodoGenericsDeleteAPI.as_view()),
     path("create/", TodoCreateAPI.as_view()),
     path("list_api/", TodoListAPI.as_view()),
     path("retrieve/<int:pk>/", TodoRetripeveAPI.as_view()),
@@ -15,6 +18,5 @@ urlpatterns = [
     path("list/", views.todo_list),
     path("<int:pk>/", views.todo_detail),
     path("<str:name>/", views.todo_detail_name)
-
 ]
 
