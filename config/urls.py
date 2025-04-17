@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.http.response import HttpResponse, JsonResponse
 from . import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.hello_world),
+    path("api/todo/", include("todo.api_urls")),
     path("todo/", include("todo.urls")),
-    path("random/template", views.RandomNumberTemplateView.as_view()), #Class는 .as_view를 추가해줘야함.
-    path("random/view", views.RandomNumverView.as_view()) #Class는 .as_view를 추가해줘야함.
+    path("random/template/", views.RandomNumberTemplateView.as_view()), #Class는 .as_view를 추가해줘야함.
+    path("random/view/", views.RandomNumberView.as_view()) #Class는 .as_view를 추가해줘야함.
 ]

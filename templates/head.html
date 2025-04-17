@@ -1,0 +1,21 @@
+{% load static %}
+
+<head>
+
+    <title>Django Course</title>
+
+
+
+    {% comment %} css {% endcomment %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    {% comment %} Axios {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    {% comment %} jquery {% endcomment %}
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    {% comment %} Javascripes {% endcomment %}
+    <script src="{% static 'js/getCookie.js'%}"></script>
+    <script src="{% static 'js/axiosInstance.js'%}"></script>
+</head>
