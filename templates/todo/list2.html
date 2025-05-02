@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="todo-title">도건's Todo List</h1>
+    <button class="todoCreate" onclick="window.location.href='/todo/create/'">Todo Create</button>
+</div>
+<script>
+    $(document).ready(function() {
+        axiosInstance.get("/api/todo/viewsets/")
+        .then(function(response){
+            for (var i = 0; i < response.data.length; i++){
+                var todo = response.data[i]
+                if (todo.complete === true){
+                    var todoElement = `
+                    <div class="todo-item" onclick="detailView(${todo.id})">
+                        <p><strong>할일: </strong>${todo.name}</p>
+                        <p><strong>내용: </strong>${todo.description}</p>
+                        <p><strong>상태: </strong>${ todo.complete ? "완료":"진행중" }</p>
+                        <p><strong>완료시간: </strong>${datetimeToString(todo.complete_at)}</p>
+                        <p><strong>경험치: </strong>${todo.exp}</p>
+                    </div>
+                    `
+                } else {
+                    var todoElement = `
+                    <div class="todo-item" onclick="detailView(${todo.id})">
+                        <p><strong>할일: </strong>${todo.name}</p>
+                        <p><strong>내용: </strong>${todo.description}</p>
+                        <p><strong>상태: </strong>${ todo.complete ? "완료":"진행중" }</p>
+                        <p><strong>완료시간: </strong>${datetimeToString(todo.complete_at)}</p>
+                        <p><strong>경험치: </strong>${todo.exp}</p>
+                        <button class="todoUpdate" onclick="toComplete(${todo.id})">완료</button>
+                    </div>
+                    `
+                }
+                $(".container").append(todoElement)
+            }
+        })
+        .catch(function(error){
+            console.log(error+"정상적인 요청이 아닙니다.")
+        })
+
+    })
+
+    function detailView(id){
+        window.location.href =`/todo/${id}/`;
+    }
+
+    function toComplete(pk){
+       axiosInstance.patch(`/api/todo/viewsets/${pk}/`,
+       {
+            complete: true,
+       })
+       .then(function(response){
+            window.location.reload()
+       })
+    }
+</script>
+
+{% endblock %}

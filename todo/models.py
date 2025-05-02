@@ -5,6 +5,7 @@
 #admin.py로 이동 -> Rauting
 
 from django.db import models
+from django.utils import timezone
 
 class Todo(models.Model):
     name = models.CharField(max_length=100)
@@ -17,3 +18,11 @@ class Todo(models.Model):
 
     def __str__(self): # 매서드는 __str__ 필요
         return self.name
+    
+
+    def save(self, *arg, **kwargs):
+        if self.complete and self.complete_at is None:
+            self.complete_at = timezone.now()
+        if not self.complete and self.complete_at is not None:
+            self.complete_at = None
+        super().save(*arg, **kwargs)

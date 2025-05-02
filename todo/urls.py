@@ -1,17 +1,10 @@
 from django.urls import path, include
-from . import views
-from .apis import *
-from rest_framework.routers import DefaultRouter
-from .views import TodoCreateView
-
-
-router = DefaultRouter()
-router.register("", TodoViewSet)
+from .views import *
 
 urlpatterns = [
+    path("update/<int:pk>/", TodoUpdateView.as_view()),
     path("create/", TodoCreateView.as_view()),
-    path("", views.todo_main),
-    path("list/", views.todo_list),
-    path("<int:pk>/", views.todo_detail),
-    path("<str:name>/", views.todo_detail_name)
+    path("list/", TodoListView.as_view()),
+    path("<int:pk>/", TodoDetailView.as_view()),
+    path("<str:name>/", todo_detail_name)
 ]

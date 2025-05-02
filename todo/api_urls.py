@@ -17,7 +17,7 @@ urlpatterns = [
     path("generics/update/<int:pk>/", TodoGenericsUpdateAPI.as_view()),
     path("generics/delete/<int:pk>/", TodoGenericsDeleteAPI.as_view()),
     # path("create/", TodoCreateAPI.as_view()),
-    path("list_api/", TodoListAPI.as_view()),
+    path("list/", TodoListAPI.as_view()),
     path("retrieve/<int:pk>/", TodoRetripeveAPI.as_view()),
     path("update/<int:pk>/", TodoUpdateAPI.as_view()),
     path("delete/<int:pk>/", TodoDeleteAPI.as_view()),

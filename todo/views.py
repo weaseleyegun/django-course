@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Todo
 from django.views import View
+from rest_framework import viewsets
+from .serializers import TodoSerializer
 
 
 def todo_list(request):
@@ -41,3 +43,27 @@ class TodoCreateView(View):
     def get(self, request):
         print("Rendering todo/create.html")
         return render(request, "todo/create.html")
+    
+
+class TodoListView(View):
+
+    def get(self, request):
+        todos = Todo.objects.all()
+        return render(request, "todo/list2.html",{"todos":todos})
+
+
+class TodoDetailView(View):
+    
+    def get(self, request, pk):
+        return render(request, "todo/detail.html")
+    
+
+class TodoUpdateView(View):
+
+    def get(self, request, pk):
+        return render(request, "todo/update.html")
+
+
+class TodoViewSet(viewsets.ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer

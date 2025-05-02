@@ -1,0 +1,63 @@
+{% extends "base.html"%}
+{% block content %}
+
+    <div class="todoDetail">
+        <button class="toList" onclick="window.location.href='/todo/list/'">Back</button>
+    </div>
+
+
+    <div class="btnList">
+        <button class="todoUpdate" onclick="toUpdate()">수정</button>
+        <button class="todoDelete" onclick="toDelete()">삭제</button>
+    </div>
+
+<script>
+    $(document).ready(function(){
+        pk = window.location.href.split('/').filter(Boolean).pop()
+        axiosInstance.get(`/api/todo/viewsets/${pk}/`)
+        .then(
+            function(response){
+                console.log(response.data);
+                todo = response.data
+                $(".todoDetail").append(`
+                    <div class="todo-item" onclick="detailView(${todo.id})">
+                        <p><strong>할일: </strong>${todo.name}</p>
+                        <p><strong>내용: </strong>${todo.description}</p>
+                        <p><strong>상태: </strong>${ todo.complete ? "완료" : "진행중" }</p>
+                        <p><strong>완료시간: </strong>${datetimeToString(todo.complete_at)}</p>
+                        <p><strong>경험치: </strong>${todo.exp}</p>
+                    </div>
+                `)
+            }
+        )
+        .catch(
+            function(error){
+                console.log(error)
+                //alert("삭제된 Todo 입니다.")
+                //window.loaction.href = "/todo/list"
+            }
+        )
+    })
+
+    function toUpdate(){
+        pk = window.location.href.split('/').filter(Boolean).pop();
+        window.location.href = `/todo/update/${pk}/`;
+
+    }
+
+    function toDelete(){
+        pk = window.location.href.split('/').filter(Boolean).pop();
+        if (confirm("정말 해당 Todo를 삭제하시겟습니까?")){
+            axiosInstance.delete(`/api/todo/viewsets/${pk}/`)
+            .then(function(response){
+                window.location.href = "/todo/list/";
+            })
+            .catch(function(error){
+                alert("Todo 삭제에 실패했습니다.");
+            })
+        }
+    }
+</script>
+
+
+{% endblock %}

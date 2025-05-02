@@ -1,22 +1,355 @@
+/* static/css/styles.css */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
+
 header {
-    background-color: #092e20;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #092e20;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  margin: 0;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
+
 header p {
-    margin: 10px 0 0;
-    font-size: 1.2em;
-    opacity: 0.8;
+  margin: 10px 0 0;
+  font-size: 1.2em;
+  opacity: 0.8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: #cfcaca;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.container h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Todo 항목 스타일 */
+.todo-item {
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.todo-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Todo 항목 내부 스타일 */
+.todo-item p {
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.todo-item p strong {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.todo-item .todo-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+/* 상태 색상 */
+.todo-item .status-complete {
+  color: #16a34a;
+}
+
+.todo-item .status-incomplete {
+  color: #dc2626;
+}
+
+/* Todo 등록 버튼 */
+.todoCreate {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.todoCreate:hover {
+  background-color: #136d28;
+  transform: scale(1.05);
+}
+
+.toList {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #979da9; /* 회색 */
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.toList:hover {
+  background-color: #4b5563; /* 더 어두운 회색 */
+  transform: scale(1.05);
+}
+/* 빈 리스트 메시지 */
+.no-todos {
+  text-align: center;
+  color: #6b7280;
+  margin-top: 2rem;
+  font-size: 1.125rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .container {
+      padding: 1.5rem;
+  }
+
+  .container h1 {
+      font-size: 1.75rem;
+  }
+
+  .todoCreate {
+      width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+      padding: 1rem;
+      margin: 10px;
+  }
+
+  .todo-item {
+      padding: 1rem;
+      margin: 0.5rem 0;
+  }
+}
+
+/* 기존 스타일 유지 (상세 페이지 및 버튼) */
+.todoDetail {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 12px 4px rgba(161, 26, 26, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  transition: transform 0.2s ease;
+}
+
+.todoDetail:hover {
+  transform: translateY(-8px);
+}
+
+.btnList {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btnList button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.todoUpdate {
+  padding: 5px 10px;
+  font-size: small;
+  border: none;
+  border-radius: 4px;
+  background-color: #4a90e2;
+  color: #ffffff;
+}
+
+.todoUpdate:hover {
+  background-color: #357abd;
+  transform: scale(1.05);
+}
+
+.todoDelete {
+  background-color: #e94e77;
+  color: #ffffff;
+}
+
+.todoDelete:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .todoDetail {
+      padding: 15px;
+      margin: 10px;
+  }
+
+  .btnList {
+      flex-direction: column;
+      align-items: flex-end;
+  }
+
+  .btnList button {
+      width: 100%;
+      padding: 12px;
+  }
+}
+
+.header {
+  background: linear-gradient(135deg, #4a90e2, #50c9c3); /* 그라데이션 배경 */
+  padding: 0.5rem 13rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 부드러운 그림자 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  margin: 1rem auto;
+  max-width: 800px; /* 최대 너비 제한 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 부드러운 전환 */
+}
+
+/* 제목 스타일 */
+.header h1 {
+  color: #ffffff; /* 흰색 텍스트 */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 현대적인 폰트 */
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase; /* 대문자로 */
+  letter-spacing: 2px; /* 글자 간격 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 텍스트 그림자 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .header {
+      padding: 1.5rem;
+  }
+  .header h1 {
+      font-size: 1.8rem;
+  }
+}
+
+.footer {
+  background: linear-gradient(135deg, #2c3e50, #3498db); /* 어두운 톤에서 밝은 톤으로 그라데이션 */
+  color: #ffffff;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* 상단 그림자 */
+  border-top: 4px solid #ffffff; /* 상단 흰색 경계선 */
+  margin-top: 2rem;
+}
+
+/* 푸터 콘텐츠 */
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 제목 스타일 */
+.footer h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 이메일 링크 */
+.footer p a {
+  color: #f1c40f; /* 밝은 노란색으로 강조 */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer p a:hover {
+  color: #f39c12; /* 호버 시 약간 어두운 노란색 */
+}
+
+/* 소셜 링크 스타일 */
+.social-links {
+  margin: 1.5rem 0;
+}
+
+.social-icon {
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  color: #2c3e50;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-icon.github { background-color: #24292e; color: #ffffff; }
+.social-icon.linkedin { background-color: #0077b5; color: #ffffff; }
+.social-icon.twitter { background-color: #1da1f2; color: #ffffff; }
+
+.social-icon:hover {
+  transform: translateY(-3px); /* 호버 시 살짝 위로 */
+  background-color: #f1c40f; /* 호버 시 노란색 */
+  color: #2c3e50;
+}
+
+/* 저작권 텍스트 */
+.copyright {
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .footer {
+      padding: 1.5rem;
+  }
+  .footer h2 {
+      font-size: 1.5rem;
+  }
+  .social-icon {
+      margin: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+  }
 }
