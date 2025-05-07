@@ -7,7 +7,7 @@ import random
 def hello_world(request):
     return HttpResponse("<h1>Hello World<h1>")
 
-def hello_world_jsoin(request):
+def hello_world_json(request):
     return JsonResponse({"message": "Hello, World!"})
 
 class RandomNumberTemplateView(TemplateView):

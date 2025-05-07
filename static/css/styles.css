@@ -353,3 +353,57 @@ header p {
       font-size: 0.9rem;
   }
 }
+/* 페이지네이션 컨테이너 */
+.pagination {
+  text-align: center;
+  margin: 22px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 페이지 링크 스타일 */
+.pagination .page_link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  margin: 0 0.4rem;
+  background-color: #ffffff; /* 기본 파란색 */
+  color: #1f2937 !important; /* 텍스트 색상 우선순위 강화 */
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 1px 1px rgb(0, 0, 0, 22%);
+}
+
+/* 호버 효과 */
+.pagination .page_link:hover {
+  background-color: #cfcaca; 
+  transform: translateY(-3px); /* 위로 이동 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 활성 페이지 스타일 */
+.pagination .page_link.active {
+  background-color: #2ecc71; /* 초록색 */
+  cursor: default;
+  transform: scale(1.1); /* 약간 확대 */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 비활성 링크 (옵션) */
+.pagination .page_link.disabled {
+  background-color: #bdc3c7;
+  color: #7f8c8d !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  .pagination .page_link {
+      padding: 0.5rem 1rem;
+      margin: 0 0.2rem;
+      font-size: 0.9rem;
+  }
+}

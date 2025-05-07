@@ -4,14 +4,23 @@
 
 <div class="container">
     <h1 class="todo-title">도건's Todo List</h1>
-    <button class="todoCreate" onclick="window.location.href='/todo/create/'">Todo Create</button>
+    <button class="todoCreate" onclick="window.location.href='/todo/create/'">Create Todo</button>
 </div>
+
+<div class="pagination">
+</div>
+
 <script>
     $(document).ready(function() {
-        axiosInstance.get("/api/todo/viewsets/")
+        loadTodoList(1);
+    });
+
+    function loadTodoList(page){  
+        $(".container").empty();
+        axiosInstance.get(`/api/todo/viewsets/?page=${page}`)
         .then(function(response){
-            for (var i = 0; i < response.data.length; i++){
-                var todo = response.data[i]
+            for (var i = 0; i < response.data.data.length; i++){
+                var todo = response.data.data[i]
                 if (todo.complete === true){
                     var todoElement = `
                     <div class="todo-item" onclick="detailView(${todo.id})">
@@ -36,12 +45,17 @@
                 }
                 $(".container").append(todoElement)
             }
+            var pagination = response.data;
+            var pageLinks ="";
+            for (var i = 1; i <= pagination.page_count; i++){
+                pageLinks += `<a href="#" class="page_link" onclick="loadTodoList(${i})">${i}</a>`;
+            }
+            $(".pagination").html(pageLinks);
         })
         .catch(function(error){
             console.log(error+"정상적인 요청이 아닙니다.")
         })
-
-    })
+    }
 
     function detailView(id){
         window.location.href =`/todo/${id}/`;
@@ -56,6 +70,7 @@
             window.location.reload()
        })
     }
+
 </script>
 
 {% endblock %}
